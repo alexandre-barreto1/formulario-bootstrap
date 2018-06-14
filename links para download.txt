@@ -1,0 +1,8 @@
+https://getbootstrap.com/docs/4.0/getting-started/download/
+Download do arquivo: Compiled CSS and JS
+
+Inserção de ícones
+https://fontawesome.com/v4.7.0/get-started/
+
+Ícones disponíveis
+https://fontawesome.com/v4.7.0/icons/

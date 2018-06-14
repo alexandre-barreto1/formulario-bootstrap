@@ -1,0 +1,168 @@
+<!Doctype html>
+<html>
+	<head>
+		<!-- BIBLIOTECA DE FUNÇÕES DEFINIDAS EM JAVASCRIPT -->
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="bootstrap-4.0.0/js/bootstrap.min.js"></script>
+		
+		<!-- Biblioteca para utilização de ícones -->
+		<!-- https://fontawesome.com/v4.7.0/icons/  Lista de ícones -->
+		<link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<!-- CHAMADA DOS ESTILOS CSS bootstrap e estilo próprio -->
+		<link rel="stylesheet" href="bootstrap-4.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/estilo.css" >
+		
+		<!-- Mascara para cpf, cep, monetário -->
+		<script src="js/maskedinput.min.js"></script>
+		<script type="text/javascript" src="js/priceformat.js"></script>	
+		<script type="text/javascript">
+
+	  		$(document).ready(function() {
+				
+				$('.mascaraReal').priceFormat({
+				    prefix: '',
+				    centsSeparator: ',',
+				    thousandsSeparator: '.'
+				});		
+	
+				$('.inteiro').priceFormat({
+					centsLimit:0,
+				    prefix: '',
+				    centsSeparator: '',
+				    thousandsSeparator: ''					
+				});					
+	
+			});
+
+			$(document).ready(function(){
+				$(".mascaraData").mask("99/99/9999");
+				$(".mascaraTelefone").mask("(99) 99999-9999");
+				$(".mascaraCep").mask("99999-999");
+				$(".mascaraCpf").mask("999.999.999-99");
+			});
+		
+		</script>
+		
+		
+		<!-- DEFINIÇÃO DO ÍCONE E TÍTULO DA ABA DO NAVEGADOR -->
+		<link rel="shortcut icon" type="img/png" href="imagens/favicon.png"/>
+		<title>Esquelethon</title>
+		
+		<!-- Identificação do autor da página, pode ser a empresa também -->
+		<meta name="author" content="Paulo Battistella">
+		
+		<!-- Uma breve descrição do seu site para os buscadores encontrarem seu site -->
+		<meta name="description" content="Definição de um template para construção de um sistema qualquer">
+		
+		<!-- Palavras chave que definem o seu sistema. É comum utilizar até 5 palavras -->
+		<meta name="keywords" content="sites, web, meta tag, código, html">
+		
+		<script>
+			function salvar(){
+				//Resgatar os campos
+				var campoNome = document.getElementById("nome");
+				var campoIdade = document.getElementById("idade");
+				
+				var nome = campoNome.value;
+				var idade = parseInt(campoIdade.value);
+				
+				if(nome=="" || nome.length<=3){
+					alertaErro("Preencha o campo nome! Minimo 3 caracteres");
+				}else if(isNaN(idade) || idade<0 || idade>200){
+					alertaErro("Preencha corretamente o campo idade!");
+				}else{					
+					alertaSucesso("Cadastrado com sucesso");
+				}
+				
+			}
+			
+			function alertaErro(msg){
+				$("#alerta_erro .texto").html(msg);
+				$("#alerta_erro").slideDown(400).delay(2000).slideUp(400);
+			}
+			
+			function alertaSucesso(msg){
+				$("#alerta_sucesso .texto").html(msg);
+				$("#alerta_sucesso").slideDown(400).delay(2000).slideUp(400);
+			}
+			
+			function alertaAviso(msg){
+				$("#alerta_aviso .texto").html(msg);
+				$("#alerta_aviso").slideDown(400);
+			}
+		</script>
+	</head>
+	<body>
+		<div class="conteudo-principal">
+			<div id="menu">
+				<nav class="nav nav-pills nav-fill">
+				  <a class="nav-item nav-link active" href="#"><i class="fa fa-home"></i> Inicio</a>
+				  <a class="nav-item nav-link" href="#">Exemplo de Listagem</a>
+				  <a class="nav-item nav-link" href="#">Exemplo 1 formulário</a>
+				  <a class="nav-item nav-link" href="#">Exemplo 2 formulário</a>
+				</nav>
+			</div>
+        	<div class="container-fluid" id="conteudo">
+				
+				<div class="formulario">
+					<h4><i class="fa fa-user"></i> Cadastro de pessoa</h4>
+					<label>Nome</label>
+					<input type="text" class="form-control" id="nome" >
+					<hr>
+					
+					<label>Idade</label>
+					<input type="text" class="form-control" id="idade" >
+					<hr>
+					
+					<label>Salário</label>
+					<input type="text" class="form-control mascaraReal" id="salario" >
+					<hr>
+					
+					<label>CEP</label>
+					<input type="text" class="form-control mascaraCep" id="cep" >
+					<hr>
+					
+					<label>CPF</label>
+					<input type="text" class="form-control mascaraCpf" id="cpf" >
+					<hr>
+					
+					<label>Data Nascimento</label>
+					<input type="text" class="form-control mascaraData" id="datanascimento" >
+					<hr>
+					
+					
+					
+					<button class="btn btn-success" onclick="salvar()">
+						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Enviar
+					</button>
+					<a href="">Voltar</a>
+				</div>
+				
+			</div>
+		</div>
+
+
+		<!-- DEFINIÇÃO DAS CAIXAS DE MENSAGEM -->
+		<div id="alerta_sucesso" style="position: fixed; top:0px; left:0px; width: 100%; display:none;" class="alert alert-success">
+			<span class="texto">Alerta de sucesso!</span>
+		</div>
+		
+		
+		<div id="alerta_erro" style="position: fixed; top:0px; left:0px; width:100%; display: none;" class="alert alert-danger">
+			<span class="texto">Alerta de erro!</span>
+		</div>
+		
+		
+		<div id="alerta_aviso" style="position: fixed; top:0px; left:0px; width:100%; display: none;" class="alert alert-warning">
+			<span class="texto">Este alert possui botão de fechar!</span>
+			<button type="button" class="close" data-dismiss="alert">
+				<span>&times;</span>
+			</button>
+		</div>
+		<!-- 
+			Mais Alerts neste link https://getbootstrap.com/docs/4.1/components/alerts/
+		-->
+		
+	</body>
+</html>
